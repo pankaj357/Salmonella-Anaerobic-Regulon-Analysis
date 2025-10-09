@@ -1,0 +1,491 @@
+********************************************************************************
+MEME - Motif discovery tool
+********************************************************************************
+MEME version 5.5.4 (Release date: Fri Jun 16 12:19:08 2023 -0700)
+
+For further information on how to interpret these results please access http://meme-suite.org/.
+To get a copy of the MEME Suite software please access https://meme-suite.org.
+
+********************************************************************************
+
+
+********************************************************************************
+REFERENCE
+********************************************************************************
+If you use this program in your research, please cite:
+
+Timothy L. Bailey and Charles Elkan,
+"Fitting a mixture model by expectation maximization to
+discover motifs in biopolymers",
+Proceedings of the Second International Conference on Intelligent Systems
+for Molecular Biology, pp. 28-36, AAAI Press, Menlo Park, California, 1994.
+********************************************************************************
+
+
+********************************************************************************
+TRAINING SET
+********************************************************************************
+PRIMARY SEQUENCES= training_promoters/ttrR_promoters.fasta
+CONTROL SEQUENCES= --none--
+ALPHABET= ACGT
+Sequence name            Weight Length  Sequence name            Weight Length  
+-------------            ------ ------  -------------            ------ ------  
+STBHUCCB_RS06405|ttrA|NC 1.0000    350  STBHUCCB_RS06410|ttrC|NC 1.0000    350  
+STBHUCCB_RS06415|ttrB|NC 1.0000    350  STBHUCCB_RS06420|ttrS|NC 1.0000    350  
+STBHUCCB_RS06425|ttrR|NC 1.0000    350  LW89_RS19025|ttrA|NZ_CP0 1.0000    350  
+LW89_RS19030|ttrC|NZ_CP0 1.0000    350  LW89_RS19040|ttrS|NZ_CP0 1.0000    350  
+LW89_RS19045|ttrR|NZ_CP0 1.0000    350  ABUJ63_RS01985|ttrR|NZ_J 1.0000    350  
+ABUJ63_RS01990|ttrS|NZ_J 1.0000    350  ABUJ63_RS01995|ttrB|NZ_J 1.0000    350  
+ABUJ63_RS02000|ttrC|NZ_J 1.0000    350  ABUJ63_RS02005|ttrA|NZ_J 1.0000    350  
+HFU19_RS12500|ttrR|NZ_CP 1.0000    350  HFU19_RS12505|ttrS|NZ_CP 1.0000    350  
+HFU19_RS12510|ttrB|NZ_CP 1.0000    350  HFU19_RS12515|ttrC|NZ_CP 1.0000    350  
+HFU19_RS12520|ttrA|NZ_CP 1.0000    350  STM1383|ttrA|NC_003197.2 1.0000    350  
+STM1384|ttrC|NC_003197.2 1.0000    350  STM1385|ttrB|NC_003197.2 1.0000    350  
+STM1386|ttrS|NC_003197.2 1.0000    350  STM1387|ttrR|NC_003197.2 1.0000    350  
+A628_RS06320|ttrR|NZ_KI6 1.0000    350  A628_RS06325|ttrS|NZ_KI6 1.0000    350  
+A628_RS06330|ttrB|NZ_KI6 1.0000    350  A628_RS06335|ttrC|NZ_KI6 1.0000    350  
+A628_RS06340|ttrA|NZ_KI6 1.0000    350  
+********************************************************************************
+
+********************************************************************************
+COMMAND LINE SUMMARY
+********************************************************************************
+This information can also be useful in the event you wish to report a
+problem with the MEME software.
+
+command: meme training_promoters/ttrR_promoters.fasta -o meme_outputs/ttrR -dna -mod anr -nmotifs 1 -minw 16 -maxw 20 -revcomp 
+
+model:  mod=           anr    nmotifs=         1    evt=           inf
+objective function:           em=       E-value of product of p-values
+                              starts=   E-value of product of p-values
+strands: + -
+width:  minw=           16    maxw=           20
+nsites: minsites=        2    maxsites=      145    wnsites=       0.8
+theta:  spmap=         uni    spfuzz=        0.5
+em:     prior=   dirichlet    b=            0.01    maxiter=        50
+        distance=    1e-05
+trim:   wg=             11    ws=              1    endgaps=       yes
+data:   n=           10150    N=              29
+sample: seed=            0    hsfrac=          0
+        searchsize=  10150    norand=         no    csites=       1000
+Letter frequencies in dataset:
+A 0.237 C 0.263 G 0.263 T 0.237 
+Background letter frequencies (from file dataset with add-one prior applied):
+A 0.237 C 0.263 G 0.263 T 0.237 
+Background model order: 0
+********************************************************************************
+
+
+********************************************************************************
+MOTIF TTRYTGYTKKMSATATHVMC MEME-1	width =  20  sites =  93  llr = 1101  E-value = 3.1e-164
+********************************************************************************
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 Description
+--------------------------------------------------------------------------------
+Simplified        A  215::11:125181623362
+pos.-specific     C  :214::3::14512212248
+probability       G  2:5:29::53:41:2:15::
+matrix            T  77:68:6a341::7:73:::
+
+         bits    2.1        *            
+                 1.9        *            
+                 1.7      * *            
+                 1.5      * *            
+Relative         1.2     ** *           *
+Entropy          1.0    *** *    *     **
+(17.1 bits)      0.8 ** *** *  * *  *  **
+                 0.6 ********* ******  **
+                 0.4 ********* ****** ***
+                 0.2 ********************
+                 0.0 --------------------
+
+Multilevel           TTGTTGTTGTACATATTGAC
+consensus              ACG C TGCG  C AACA
+sequence                             CC  
+                                         
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 sites sorted by position p-value
+--------------------------------------------------------------------------------
+Sequence name            Strand  Start   P-value                    Site      
+-------------            ------  ----- ---------            --------------------
+A628_RS06330|ttrB|NZ_KI6     -    295  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+A628_RS06325|ttrS|NZ_KI6     +    105  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+STM1386|ttrS|NC_003197.2     +    112  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+STM1385|ttrB|NC_003197.2     -    312  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+HFU19_RS12510|ttrB|NZ_CP     -    295  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+HFU19_RS12505|ttrS|NZ_CP     +    105  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+ABUJ63_RS01995|ttrB|NZ_J     -    295  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+ABUJ63_RS01990|ttrS|NZ_J     +    105  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+LW89_RS19040|ttrS|NZ_CP0     +    106  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+STBHUCCB_RS06420|ttrS|NC     +    106  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+STBHUCCB_RS06415|ttrB|NC     -    294  6.42e-10 AAATTGCCGT TTACTGCTGTCCATATTGAC TCCCGTCCAC
+A628_RS06330|ttrB|NZ_KI6     +    271  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+A628_RS06325|ttrS|NZ_KI6     -    129  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+STM1386|ttrS|NC_003197.2     -    136  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+STM1385|ttrB|NC_003197.2     +    288  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+HFU19_RS12510|ttrB|NZ_CP     +    271  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+HFU19_RS12505|ttrS|NZ_CP     -    129  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+ABUJ63_RS01995|ttrB|NZ_J     +    271  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+ABUJ63_RS01990|ttrS|NZ_J     -    129  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+LW89_RS19040|ttrS|NZ_CP0     -    130  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+STBHUCCB_RS06420|ttrS|NC     -    130  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+STBHUCCB_RS06415|ttrB|NC     +    270  7.81e-07 GACAAATGTT TCATTGTTGGCAATGTGGAC GGGAGTCAAT
+A628_RS06330|ttrB|NZ_KI6     +    139  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+A628_RS06325|ttrS|NZ_KI6     -    261  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+STM1386|ttrS|NC_003197.2     -    268  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+STM1385|ttrB|NC_003197.2     +    156  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+HFU19_RS12510|ttrB|NZ_CP     +    139  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+HFU19_RS12505|ttrS|NZ_CP     -    261  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+ABUJ63_RS01995|ttrB|NZ_J     +    139  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+ABUJ63_RS01990|ttrS|NZ_J     -    261  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+LW89_RS19040|ttrS|NZ_CP0     -    262  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+STBHUCCB_RS06420|ttrS|NC     -    262  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+STBHUCCB_RS06415|ttrB|NC     +    138  9.87e-07 CCTGTCAATT ATGTTGTTTTAGATCAACAA CAAGCCGGGT
+A628_RS06330|ttrB|NZ_KI6     +    101  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CTAATATCCC
+A628_RS06325|ttrS|NZ_KI6     -    299  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CTAATATCCC
+STM1386|ttrS|NC_003197.2     -    306  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+STM1385|ttrB|NC_003197.2     +    118  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+HFU19_RS12510|ttrB|NZ_CP     +    101  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+HFU19_RS12505|ttrS|NZ_CP     -    299  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+ABUJ63_RS01995|ttrB|NZ_J     +    101  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+ABUJ63_RS01990|ttrS|NZ_J     -    299  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+LW89_RS19040|ttrS|NZ_CP0     -    300  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+STBHUCCB_RS06420|ttrS|NC     -    300  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+STBHUCCB_RS06415|ttrB|NC     +    100  1.24e-06 GCCAGGCGCC TTACGGTTTTACCTCTCACC CCAATATCCC
+A628_RS06330|ttrB|NZ_KI6     -    165  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+A628_RS06325|ttrS|NZ_KI6     +    235  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+STM1386|ttrS|NC_003197.2     +    242  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+STM1385|ttrB|NC_003197.2     -    182  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+HFU19_RS12510|ttrB|NZ_CP     -    165  1.39e-06 GTGTGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+HFU19_RS12505|ttrS|NZ_CP     +    235  1.39e-06 GTGTGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+ABUJ63_RS01995|ttrB|NZ_J     -    165  1.39e-06 GTGCACTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+ABUJ63_RS01990|ttrS|NZ_J     +    235  1.39e-06 GTGCACTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+LW89_RS19040|ttrS|NZ_CP0     +    236  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+STBHUCCB_RS06420|ttrS|NC     +    236  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+STBHUCCB_RS06415|ttrB|NC     -    164  1.39e-06 GTGCGCTCTA TTGTGGTTAACCACATACCC GGCTTGTTGT
+A628_RS06335|ttrC|NZ_KI6     +    113  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+STM1384|ttrC|NC_003197.2     +    120  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+HFU19_RS12515|ttrC|NZ_CP     +    113  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+ABUJ63_RS02000|ttrC|NZ_J     +    113  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+LW89_RS19030|ttrC|NZ_CP0     +    112  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+STBHUCCB_RS06410|ttrC|NC     +    112  1.55e-06 GGCGGCGCGC GTATTATTGGCGATATCAAA GATCCCCATA
+A628_RS06340|ttrA|NZ_KI6     +    132  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTCCCCAAG
+STM1383|ttrA|NC_003197.2     +    139  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTCCCCAAG
+HFU19_RS12520|ttrA|NZ_CP     +    132  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTACCCAAG
+ABUJ63_RS02005|ttrA|NZ_J     +    132  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTCCCCAAG
+LW89_RS19025|ttrA|NZ_CP0     +    131  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTCCCCAAG
+STBHUCCB_RS06405|ttrA|NC     +    131  2.89e-06 GCGCTGGACA TTGTTGATTCAGGTACAAAC CGTACCCAAG
+A628_RS06330|ttrB|NZ_KI6     -    317  3.86e-06 TCAGGACGCC AAGCTGCTGGAGAAATTGCC GTTTACTGCT
+A628_RS06325|ttrS|NZ_KI6     +     83  3.86e-06 TCAGGACGCC AAGCTGCTGGAGAAATTGCC GTTTACTGCT
+STM1386|ttrS|NC_003197.2     +     90  3.86e-06 TCAGGACGCC AAGCTGCTGGAGAAATTGCC GTTTACTGCT
+LW89_RS19040|ttrS|NZ_CP0     +     84  3.86e-06 TCAGGACGCC AAGCTGCTGGAGAAATTGCC GTTTACTGCT
+HFU19_RS12510|ttrB|NZ_CP     -    317  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+HFU19_RS12505|ttrS|NZ_CP     +     83  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+ABUJ63_RS01995|ttrB|NZ_J     -    317  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+ABUJ63_RS01990|ttrS|NZ_J     +     83  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+STBHUCCB_RS06420|ttrS|NC     +     84  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+STBHUCCB_RS06415|ttrB|NC     -    316  4.25e-06 TCAGGACGCC GAGCTGCTGGAGAAATTGCC GTTTACTGCT
+STM1387|ttrR|NC_003197.2     +     78  5.10e-06 AACGGCATCA GTATTGTTTTACAGGATAAC GCCGGGGGAA
+ABUJ63_RS01985|ttrR|NZ_J     +     72  5.10e-06 AACGGCATCA GTATTGTTTTACAGGATAAC GCCGGGGGAA
+LW89_RS19045|ttrR|NZ_CP0     +     73  5.10e-06 AACGGCATCA GTATTGTTTTACAGGATAAC GCCGGGGGAA
+STBHUCCB_RS06425|ttrR|NC     +     73  5.10e-06 AACGGCATCA GTATTGTTTTACAGGATAAC GCCGGGGGAA
+A628_RS06320|ttrR|NZ_KI6     -    209  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+STM1387|ttrR|NC_003197.2     -    215  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+HFU19_RS12500|ttrR|NZ_CP     -    209  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+ABUJ63_RS01985|ttrR|NZ_J     -    209  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+LW89_RS19045|ttrR|NZ_CP0     -    210  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+STBHUCCB_RS06425|ttrR|NC     -    210  7.88e-06 CGCGGTCTGG TTCCTGATGCTGATATCGCC CCGCCCATAC
+A628_RS06320|ttrR|NZ_KI6     +     42  1.27e-05 CATTTATGGG TCGTTGCTGAACGCACTGAA AACGGCATCA
+STM1387|ttrR|NC_003197.2     +     48  1.27e-05 CATTTATGGA TCGTTGCTGAACGCACTGAA AACGGCATCA
+HFU19_RS12500|ttrR|NZ_CP     +     42  1.27e-05 CATTTATGGG TCGTTGCTGAACGCACTGAA CACGGCATCA
+ABUJ63_RS01985|ttrR|NZ_J     +     42  1.27e-05 CATTTATGGG TCGTTGCTGAACGCACTGAA AACGGCATCA
+LW89_RS19045|ttrR|NZ_CP0     +     43  1.27e-05 CATTTATGGG TCGTTGCTGAACGCACTGAA AACGGCATCA
+STBHUCCB_RS06425|ttrR|NC     +     43  1.27e-05 CATTTATGGG TCGTTGCTGAACGCACTGAA AACGGCATCA
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 block diagrams
+--------------------------------------------------------------------------------
+SEQUENCE NAME            POSITION P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+A628_RS06330|ttrB|NZ_KI6          3.9e-06  100_[+1]_18_[+1]_6_[-1]_86_[+1]_
+                                           4_[-1]_2_[-1]_14
+A628_RS06325|ttrS|NZ_KI6          3.9e-06  82_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_32
+STM1386|ttrS|NC_003197.2          3.9e-06  89_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_25
+STM1385|ttrB|NC_003197.2          9.9e-07  117_[+1]_18_[+1]_6_[-1]_86_[+1]_
+                                           4_[-1]_19
+HFU19_RS12510|ttrB|NZ_CP          4.2e-06  100_[+1]_18_[+1]_6_[-1]_86_[+1]_
+                                           4_[-1]_2_[-1]_14
+HFU19_RS12505|ttrS|NZ_CP          4.2e-06  82_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_32
+ABUJ63_RS01995|ttrB|NZ_J          4.2e-06  100_[+1]_18_[+1]_6_[-1]_86_[+1]_
+                                           4_[-1]_2_[-1]_14
+ABUJ63_RS01990|ttrS|NZ_J          4.2e-06  82_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_32
+LW89_RS19040|ttrS|NZ_CP0          3.9e-06  83_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_31
+STBHUCCB_RS06420|ttrS|NC          4.2e-06  83_[+1]_2_[+1]_4_[-1]_86_[+1]_6_
+                                           [-1]_18_[-1]_31
+STBHUCCB_RS06415|ttrB|NC          4.2e-06  99_[+1]_18_[+1]_6_[-1]_86_[+1]_
+                                           4_[-1]_2_[-1]_15
+A628_RS06335|ttrC|NZ_KI6          1.5e-06  112_[+1]_218
+STM1384|ttrC|NC_003197.2          1.5e-06  119_[+1]_211
+HFU19_RS12515|ttrC|NZ_CP          1.5e-06  112_[+1]_218
+ABUJ63_RS02000|ttrC|NZ_J          1.5e-06  112_[+1]_218
+LW89_RS19030|ttrC|NZ_CP0          1.5e-06  111_[+1]_219
+STBHUCCB_RS06410|ttrC|NC          1.5e-06  111_[+1]_219
+A628_RS06340|ttrA|NZ_KI6          2.9e-06  131_[+1]_199
+STM1383|ttrA|NC_003197.2          2.9e-06  138_[+1]_192
+HFU19_RS12520|ttrA|NZ_CP          2.9e-06  131_[+1]_199
+ABUJ63_RS02005|ttrA|NZ_J          2.9e-06  131_[+1]_199
+LW89_RS19025|ttrA|NZ_CP0          2.9e-06  130_[+1]_200
+STBHUCCB_RS06405|ttrA|NC          2.9e-06  130_[+1]_200
+STM1387|ttrR|NC_003197.2          5.1e-06  47_[+1]_10_[+1]_117_[-1]_116
+ABUJ63_RS01985|ttrR|NZ_J          1.3e-05  41_[+1]_10_[+1]_117_[-1]_122
+LW89_RS19045|ttrR|NZ_CP0          1.3e-05  42_[+1]_10_[+1]_117_[-1]_121
+STBHUCCB_RS06425|ttrR|NC          1.3e-05  42_[+1]_10_[+1]_117_[-1]_121
+A628_RS06320|ttrR|NZ_KI6          1.3e-05  41_[+1]_147_[-1]_122
+HFU19_RS12500|ttrR|NZ_CP          1.3e-05  41_[+1]_147_[-1]_122
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 in BLOCKS format
+--------------------------------------------------------------------------------
+BL   MOTIF TTRYTGYTKKMSATATHVMC width=20 seqs=93
+A628_RS06330|ttrB|NZ_KI6 (  295) TTACTGCTGTCCATATTGAC  1 
+A628_RS06325|ttrS|NZ_KI6 (  105) TTACTGCTGTCCATATTGAC  1 
+STM1386|ttrS|NC_003197.2 (  112) TTACTGCTGTCCATATTGAC  1 
+STM1385|ttrB|NC_003197.2 (  312) TTACTGCTGTCCATATTGAC  1 
+HFU19_RS12510|ttrB|NZ_CP (  295) TTACTGCTGTCCATATTGAC  1 
+HFU19_RS12505|ttrS|NZ_CP (  105) TTACTGCTGTCCATATTGAC  1 
+ABUJ63_RS01995|ttrB|NZ_J (  295) TTACTGCTGTCCATATTGAC  1 
+ABUJ63_RS01990|ttrS|NZ_J (  105) TTACTGCTGTCCATATTGAC  1 
+LW89_RS19040|ttrS|NZ_CP0 (  106) TTACTGCTGTCCATATTGAC  1 
+STBHUCCB_RS06420|ttrS|NC (  106) TTACTGCTGTCCATATTGAC  1 
+STBHUCCB_RS06415|ttrB|NC (  294) TTACTGCTGTCCATATTGAC  1 
+A628_RS06330|ttrB|NZ_KI6 (  271) TCATTGTTGGCAATGTGGAC  1 
+A628_RS06325|ttrS|NZ_KI6 (  129) TCATTGTTGGCAATGTGGAC  1 
+STM1386|ttrS|NC_003197.2 (  136) TCATTGTTGGCAATGTGGAC  1 
+STM1385|ttrB|NC_003197.2 (  288) TCATTGTTGGCAATGTGGAC  1 
+HFU19_RS12510|ttrB|NZ_CP (  271) TCATTGTTGGCAATGTGGAC  1 
+HFU19_RS12505|ttrS|NZ_CP (  129) TCATTGTTGGCAATGTGGAC  1 
+ABUJ63_RS01995|ttrB|NZ_J (  271) TCATTGTTGGCAATGTGGAC  1 
+ABUJ63_RS01990|ttrS|NZ_J (  129) TCATTGTTGGCAATGTGGAC  1 
+LW89_RS19040|ttrS|NZ_CP0 (  130) TCATTGTTGGCAATGTGGAC  1 
+STBHUCCB_RS06420|ttrS|NC (  130) TCATTGTTGGCAATGTGGAC  1 
+STBHUCCB_RS06415|ttrB|NC (  270) TCATTGTTGGCAATGTGGAC  1 
+A628_RS06330|ttrB|NZ_KI6 (  139) ATGTTGTTTTAGATCAACAA  1 
+A628_RS06325|ttrS|NZ_KI6 (  261) ATGTTGTTTTAGATCAACAA  1 
+STM1386|ttrS|NC_003197.2 (  268) ATGTTGTTTTAGATCAACAA  1 
+STM1385|ttrB|NC_003197.2 (  156) ATGTTGTTTTAGATCAACAA  1 
+HFU19_RS12510|ttrB|NZ_CP (  139) ATGTTGTTTTAGATCAACAA  1 
+HFU19_RS12505|ttrS|NZ_CP (  261) ATGTTGTTTTAGATCAACAA  1 
+ABUJ63_RS01995|ttrB|NZ_J (  139) ATGTTGTTTTAGATCAACAA  1 
+ABUJ63_RS01990|ttrS|NZ_J (  261) ATGTTGTTTTAGATCAACAA  1 
+LW89_RS19040|ttrS|NZ_CP0 (  262) ATGTTGTTTTAGATCAACAA  1 
+STBHUCCB_RS06420|ttrS|NC (  262) ATGTTGTTTTAGATCAACAA  1 
+STBHUCCB_RS06415|ttrB|NC (  138) ATGTTGTTTTAGATCAACAA  1 
+A628_RS06330|ttrB|NZ_KI6 (  101) TTACGGTTTTACCTCTCACC  1 
+A628_RS06325|ttrS|NZ_KI6 (  299) TTACGGTTTTACCTCTCACC  1 
+STM1386|ttrS|NC_003197.2 (  306) TTACGGTTTTACCTCTCACC  1 
+STM1385|ttrB|NC_003197.2 (  118) TTACGGTTTTACCTCTCACC  1 
+HFU19_RS12510|ttrB|NZ_CP (  101) TTACGGTTTTACCTCTCACC  1 
+HFU19_RS12505|ttrS|NZ_CP (  299) TTACGGTTTTACCTCTCACC  1 
+ABUJ63_RS01995|ttrB|NZ_J (  101) TTACGGTTTTACCTCTCACC  1 
+ABUJ63_RS01990|ttrS|NZ_J (  299) TTACGGTTTTACCTCTCACC  1 
+LW89_RS19040|ttrS|NZ_CP0 (  300) TTACGGTTTTACCTCTCACC  1 
+STBHUCCB_RS06420|ttrS|NC (  300) TTACGGTTTTACCTCTCACC  1 
+STBHUCCB_RS06415|ttrB|NC (  100) TTACGGTTTTACCTCTCACC  1 
+A628_RS06330|ttrB|NZ_KI6 (  165) TTGTGGTTAACCACATACCC  1 
+A628_RS06325|ttrS|NZ_KI6 (  235) TTGTGGTTAACCACATACCC  1 
+STM1386|ttrS|NC_003197.2 (  242) TTGTGGTTAACCACATACCC  1 
+STM1385|ttrB|NC_003197.2 (  182) TTGTGGTTAACCACATACCC  1 
+HFU19_RS12510|ttrB|NZ_CP (  165) TTGTGGTTAACCACATACCC  1 
+HFU19_RS12505|ttrS|NZ_CP (  235) TTGTGGTTAACCACATACCC  1 
+ABUJ63_RS01995|ttrB|NZ_J (  165) TTGTGGTTAACCACATACCC  1 
+ABUJ63_RS01990|ttrS|NZ_J (  235) TTGTGGTTAACCACATACCC  1 
+LW89_RS19040|ttrS|NZ_CP0 (  236) TTGTGGTTAACCACATACCC  1 
+STBHUCCB_RS06420|ttrS|NC (  236) TTGTGGTTAACCACATACCC  1 
+STBHUCCB_RS06415|ttrB|NC (  164) TTGTGGTTAACCACATACCC  1 
+A628_RS06335|ttrC|NZ_KI6 (  113) GTATTATTGGCGATATCAAA  1 
+STM1384|ttrC|NC_003197.2 (  120) GTATTATTGGCGATATCAAA  1 
+HFU19_RS12515|ttrC|NZ_CP (  113) GTATTATTGGCGATATCAAA  1 
+ABUJ63_RS02000|ttrC|NZ_J (  113) GTATTATTGGCGATATCAAA  1 
+LW89_RS19030|ttrC|NZ_CP0 (  112) GTATTATTGGCGATATCAAA  1 
+STBHUCCB_RS06410|ttrC|NC (  112) GTATTATTGGCGATATCAAA  1 
+A628_RS06340|ttrA|NZ_KI6 (  132) TTGTTGATTCAGGTACAAAC  1 
+STM1383|ttrA|NC_003197.2 (  139) TTGTTGATTCAGGTACAAAC  1 
+HFU19_RS12520|ttrA|NZ_CP (  132) TTGTTGATTCAGGTACAAAC  1 
+ABUJ63_RS02005|ttrA|NZ_J (  132) TTGTTGATTCAGGTACAAAC  1 
+LW89_RS19025|ttrA|NZ_CP0 (  131) TTGTTGATTCAGGTACAAAC  1 
+STBHUCCB_RS06405|ttrA|NC (  131) TTGTTGATTCAGGTACAAAC  1 
+A628_RS06330|ttrB|NZ_KI6 (  317) AAGCTGCTGGAGAAATTGCC  1 
+A628_RS06325|ttrS|NZ_KI6 (   83) AAGCTGCTGGAGAAATTGCC  1 
+STM1386|ttrS|NC_003197.2 (   90) AAGCTGCTGGAGAAATTGCC  1 
+LW89_RS19040|ttrS|NZ_CP0 (   84) AAGCTGCTGGAGAAATTGCC  1 
+HFU19_RS12510|ttrB|NZ_CP (  317) GAGCTGCTGGAGAAATTGCC  1 
+HFU19_RS12505|ttrS|NZ_CP (   83) GAGCTGCTGGAGAAATTGCC  1 
+ABUJ63_RS01995|ttrB|NZ_J (  317) GAGCTGCTGGAGAAATTGCC  1 
+ABUJ63_RS01990|ttrS|NZ_J (   83) GAGCTGCTGGAGAAATTGCC  1 
+STBHUCCB_RS06420|ttrS|NC (   84) GAGCTGCTGGAGAAATTGCC  1 
+STBHUCCB_RS06415|ttrB|NC (  316) GAGCTGCTGGAGAAATTGCC  1 
+STM1387|ttrR|NC_003197.2 (   78) GTATTGTTTTACAGGATAAC  1 
+ABUJ63_RS01985|ttrR|NZ_J (   72) GTATTGTTTTACAGGATAAC  1 
+LW89_RS19045|ttrR|NZ_CP0 (   73) GTATTGTTTTACAGGATAAC  1 
+STBHUCCB_RS06425|ttrR|NC (   73) GTATTGTTTTACAGGATAAC  1 
+A628_RS06320|ttrR|NZ_KI6 (  209) TTCCTGATGCTGATATCGCC  1 
+STM1387|ttrR|NC_003197.2 (  215) TTCCTGATGCTGATATCGCC  1 
+HFU19_RS12500|ttrR|NZ_CP (  209) TTCCTGATGCTGATATCGCC  1 
+ABUJ63_RS01985|ttrR|NZ_J (  209) TTCCTGATGCTGATATCGCC  1 
+LW89_RS19045|ttrR|NZ_CP0 (  210) TTCCTGATGCTGATATCGCC  1 
+STBHUCCB_RS06425|ttrR|NC (  210) TTCCTGATGCTGATATCGCC  1 
+A628_RS06320|ttrR|NZ_KI6 (   42) TCGTTGCTGAACGCACTGAA  1 
+STM1387|ttrR|NC_003197.2 (   48) TCGTTGCTGAACGCACTGAA  1 
+HFU19_RS12500|ttrR|NZ_CP (   42) TCGTTGCTGAACGCACTGAA  1 
+ABUJ63_RS01985|ttrR|NZ_J (   42) TCGTTGCTGAACGCACTGAA  1 
+LW89_RS19045|ttrR|NZ_CP0 (   43) TCGTTGCTGAACGCACTGAA  1 
+STBHUCCB_RS06425|ttrR|NC (   43) TCGTTGCTGAACGCACTGAA  1 
+//
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 position-specific scoring matrix
+--------------------------------------------------------------------------------
+log-odds matrix: alength= 4 w= 20 n= 9599 bayes= 6.2915 E= 3.1e-164 
+   -55  -1318    -61    149 
+  -114    -53  -1318    158 
+    97   -203     84  -1318 
+ -1318     63  -1318    132 
+ -1318  -1318    -16    169 
+  -187  -1318    183  -1318 
+   -87     14  -1318    130 
+ -1318  -1318  -1318    208 
+  -100  -1318    103     54 
+   -37   -103     14     75 
+   113     67  -1318   -187 
+  -100     81     67  -1318 
+   167   -115   -103  -1318 
+  -114    -53   -261    149 
+   135    -16    -71  -1318 
+   -55   -103  -1318    158 
+    35     -9   -115     49 
+    30    -16     84  -1318 
+   132     63  -1318  -1318 
+     6    151  -1318  -1318 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 position-specific probability matrix
+--------------------------------------------------------------------------------
+letter-probability matrix: alength= 4 w= 20 nsites= 93 E= 3.1e-164 
+ 0.161290  0.000000  0.172043  0.666667 
+ 0.107527  0.182796  0.000000  0.709677 
+ 0.462366  0.064516  0.473118  0.000000 
+ 0.000000  0.408602  0.000000  0.591398 
+ 0.000000  0.000000  0.236559  0.763441 
+ 0.064516  0.000000  0.935484  0.000000 
+ 0.129032  0.290323  0.000000  0.580645 
+ 0.000000  0.000000  0.000000  1.000000 
+ 0.118280  0.000000  0.537634  0.344086 
+ 0.182796  0.129032  0.290323  0.397849 
+ 0.516129  0.419355  0.000000  0.064516 
+ 0.118280  0.462366  0.419355  0.000000 
+ 0.752688  0.118280  0.129032  0.000000 
+ 0.107527  0.182796  0.043011  0.666667 
+ 0.602151  0.236559  0.161290  0.000000 
+ 0.161290  0.129032  0.000000  0.709677 
+ 0.301075  0.247312  0.118280  0.333333 
+ 0.290323  0.236559  0.473118  0.000000 
+ 0.591398  0.408602  0.000000  0.000000 
+ 0.247312  0.752688  0.000000  0.000000 
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+	Motif TTRYTGYTKKMSATATHVMC MEME-1 regular expression
+--------------------------------------------------------------------------------
+TT[GA][TC][TG]G[TC]T[GT][TG][AC][CG]AT[AC]T[TAC][GAC][AC][CA]
+--------------------------------------------------------------------------------
+
+
+
+
+Time  2.03 secs.
+
+********************************************************************************
+
+
+********************************************************************************
+SUMMARY OF MOTIFS
+********************************************************************************
+
+--------------------------------------------------------------------------------
+	Combined block diagrams: non-overlapping sites with p-value < 0.0001
+--------------------------------------------------------------------------------
+SEQUENCE NAME            COMBINED P-VALUE  MOTIF DIAGRAM
+-------------            ----------------  -------------
+STBHUCCB_RS06405|ttrA|NC         1.91e-03  130_[+1(2.89e-06)]_200
+STBHUCCB_RS06410|ttrC|NC         1.02e-03  111_[+1(1.55e-06)]_219
+STBHUCCB_RS06415|ttrB|NC         4.25e-07  99_[+1(1.24e-06)]_18_[+1(9.87e-07)]_\
+    6_[-1(1.39e-06)]_86_[+1(7.81e-07)]_4_[-1(6.42e-10)]_2_[-1(4.25e-06)]_15
+STBHUCCB_RS06420|ttrS|NC         4.25e-07  83_[+1(4.25e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_31
+STBHUCCB_RS06425|ttrR|NC         3.37e-03  42_[+1(1.27e-05)]_10_[+1(5.10e-06)]_\
+    117_[-1(7.88e-06)]_121
+LW89_RS19025|ttrA|NZ_CP0         1.91e-03  130_[+1(2.89e-06)]_200
+LW89_RS19030|ttrC|NZ_CP0         1.02e-03  111_[+1(1.55e-06)]_219
+LW89_RS19040|ttrS|NZ_CP0         4.25e-07  83_[+1(3.86e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_31
+LW89_RS19045|ttrR|NZ_CP0         3.37e-03  42_[+1(1.27e-05)]_10_[+1(5.10e-06)]_\
+    117_[-1(7.88e-06)]_121
+ABUJ63_RS01985|ttrR|NZ_J         3.37e-03  41_[+1(1.27e-05)]_10_[+1(5.10e-06)]_\
+    117_[-1(7.88e-06)]_122
+ABUJ63_RS01990|ttrS|NZ_J         4.25e-07  82_[+1(4.25e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_32
+ABUJ63_RS01995|ttrB|NZ_J         4.25e-07  100_[+1(1.24e-06)]_18_\
+    [+1(9.87e-07)]_6_[-1(1.39e-06)]_86_[+1(7.81e-07)]_4_[-1(6.42e-10)]_2_\
+    [-1(4.25e-06)]_14
+ABUJ63_RS02000|ttrC|NZ_J         1.02e-03  112_[+1(1.55e-06)]_218
+ABUJ63_RS02005|ttrA|NZ_J         1.91e-03  131_[+1(2.89e-06)]_199
+HFU19_RS12500|ttrR|NZ_CP         5.21e-03  41_[+1(1.27e-05)]_147_\
+    [-1(7.88e-06)]_122
+HFU19_RS12505|ttrS|NZ_CP         4.25e-07  82_[+1(4.25e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_32
+HFU19_RS12510|ttrB|NZ_CP         4.25e-07  100_[+1(1.24e-06)]_18_\
+    [+1(9.87e-07)]_6_[-1(1.39e-06)]_86_[+1(7.81e-07)]_4_[-1(6.42e-10)]_2_\
+    [-1(4.25e-06)]_14
+HFU19_RS12515|ttrC|NZ_CP         1.02e-03  112_[+1(1.55e-06)]_218
+HFU19_RS12520|ttrA|NZ_CP         1.91e-03  131_[+1(2.89e-06)]_199
+STM1383|ttrA|NC_003197.2         1.91e-03  138_[+1(2.89e-06)]_192
+STM1384|ttrC|NC_003197.2         1.02e-03  119_[+1(1.55e-06)]_211
+STM1385|ttrB|NC_003197.2         4.25e-07  117_[+1(1.24e-06)]_18_\
+    [+1(9.87e-07)]_6_[-1(1.39e-06)]_86_[+1(7.81e-07)]_4_[-1(6.42e-10)]_19
+STM1386|ttrS|NC_003197.2         4.25e-07  89_[+1(3.86e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_25
+STM1387|ttrR|NC_003197.2         3.37e-03  47_[+1(1.27e-05)]_10_[+1(5.10e-06)]_\
+    117_[-1(7.88e-06)]_116
+A628_RS06320|ttrR|NZ_KI6         5.21e-03  41_[+1(1.27e-05)]_147_\
+    [-1(7.88e-06)]_122
+A628_RS06325|ttrS|NZ_KI6         4.25e-07  82_[+1(3.86e-06)]_2_[+1(6.42e-10)]_\
+    4_[-1(7.81e-07)]_86_[+1(1.39e-06)]_6_[-1(9.87e-07)]_18_[-1(1.24e-06)]_32
+A628_RS06330|ttrB|NZ_KI6         4.25e-07  100_[+1(1.24e-06)]_18_\
+    [+1(9.87e-07)]_6_[-1(1.39e-06)]_86_[+1(7.81e-07)]_4_[-1(6.42e-10)]_2_\
+    [-1(3.86e-06)]_14
+A628_RS06335|ttrC|NZ_KI6         1.02e-03  112_[+1(1.55e-06)]_218
+A628_RS06340|ttrA|NZ_KI6         1.91e-03  131_[+1(2.89e-06)]_199
+--------------------------------------------------------------------------------
+
+********************************************************************************
+
+
+********************************************************************************
+Stopped because requested number of motifs (1) found.
+********************************************************************************
+
+CPU: Pankhudis-MacBook-Air.local
+
+********************************************************************************

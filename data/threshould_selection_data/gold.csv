@@ -1,0 +1,18 @@
+Regulator,Gene_Name,LT2_Locus_Tag,Evidence_Type,Experimental_Method,Reference_PMID,Notes
+Fnr,narG,STM4267,Direct Binding,ChIP-chip,17220229.0,Core anaerobic gene
+Fnr,pduA,STM2076,Direct Binding,ChIP-chip,20130648.0,Propanediol utilization
+Fnr,frdA,STM0695,Direct Binding,ChIP-chip,17220229.0,Fumarate reductase
+Fnr,dmsA,STM1890,Direct Binding,EMSA,17220229.0,DMSO reductase
+ArcA,cyoA,STM1881,Direct Binding,ChIP-chip,30038032.0,Cytochrome o oxidase
+ArcA,aceA,STM0730,Direct Binding,ChIP-chip,30038032.0,Isocitrate lyase
+ArcA,sdhA,STM3301,Direct Binding,ChIP-chip,30038032.0,Succinate dehydrogenase
+NarL,narK,STM1765,Direct Binding,ChIP-chip,10231485.0,Nitrate/nitrite antiporter
+NarL,narG,STM4267,Direct Binding,ChIP-chip,10231485.0,Nitrate reductase
+NarP,narG,STM4267,Direct Binding,ChIP-chip,10231485.0,Nitrate reductase
+NsrR,hmp,STM0856,Direct Binding,ChIP-chip,22831173.0,Flavohemoglobin
+NsrR,norV,STM2840,Direct Binding,ChIP-chip,22831173.0,Nitric oxide reductase
+DcuR,dcuA,STM2676,Direct Binding,ChIP-chip,30038032.0,C4-dicarboxylate transporter
+DcuR,dcuB,STM2678,Direct Binding,ChIP-chip,30038032.0,C4-dicarboxylate transporter
+TtrR,ttrA,STM1383,Direct Binding,ChIP-chip,10231485.0,Tetrathionate reductase
+TtrR,ttrB,STM1385,Strong Genetic (no direct binding),,10231485,"Part of ttrBCA operon, regulation requires TtrR/TtrS"
+TtrR,TtrC,STM1384,Strong Genetic (no direct binding),,10231485,"Part of ttrBCA operon, regulation requires TtrR/TtrS"
