@@ -9,16 +9,90 @@ This repository contains the computational workflow for analyzing anaerobic tran
 Salmonella-Anaerobic-Regulon-Analysis/
 ├── data/
 │   ├── processed/
-│   │   └── training_genes/ # Training gene sets for motif discovery
-│   └── results/            # Analysis outputs (see .gitignore)
+│   │   ├── AEZ45052.1_promoters.fasta
+│   │   ├── all_promoters.fasta
+│   │   ├── CDU88905.1_promoters.fasta
+│   │   ├── EBX3951613.1_promoters.fasta
+│   │   ├── EDA9785606.1_promoters.fasta
+│   │   ├── EGT0473696_promoters.fasta
+│   │   ├── ETA88628.1_promoters.fasta
+│   │   └── training_genes/
+│   │       ├── arcA_training_genes.txt
+│   │       ├── dcuR_training_genes.txt
+│   │       ├── fnr_training_genes.txt
+│   │       ├── narL_training_genes.txt
+│   │       ├── narP_training_genes.txt
+│   │       ├── nsrR_training_genes.txt
+│   │       └── ttrR_training_genes.txt
+│   ├── raw/
+│   │   ├── all_genomes/
+│   │   │   ├── NC_003197.2/
+│   │   │   │   ├── EGT0473696_promoters.csv
+│   │   │   │   ├── EGT0473696_promoters.fasta
+│   │   │   │   ├── GCF_000006945.2_ASM694v2_genomic.fna
+│   │   │   │   └── genomic.gff
+│   │   │   ├── NC_016832.1/
+│   │   │   │   ├── AEZ45052.1_promoters.csv
+│   │   │   │   ├── AEZ45052.1_promoters.fasta
+│   │   │   │   └── ncbi_dataset-14/
+│   │   │   │       └── [...]
+│   │   │   └── [...]
+│   │   └── reference_genome/
+│   │       ├── GCF_000006945.2_ASM694v2_genomic.fna
+│   │       └── genomic.gff
+│   ├── results/
+│   │   ├── classification_pvalue_1e-4/
+│   │   │   ├── jaccard_similarity_matrix.csv
+│   │   │   ├── overlap_count_matrix.csv
+│   │   │   └── regulator_classification_comprehensive.csv
+│   │   ├── classification_qvalue_0.05/
+│   │   │   ├── jaccard_similarity_matrix.csv
+│   │   │   ├── overlap_count_matrix.csv
+│   │   │   └── regulator_classification_comprehensive.csv
+│   │   ├── compiled_results_pvalue_1e-4/
+│   │   │   ├── ArcA_hits.tsv
+│   │   │   ├── DcuR_hits.tsv
+│   │   │   ├── Fnr_hits.tsv
+│   │   │   └── [...]
+│   │   ├── compiled_results_qvalue_0.05/
+│   │   │   ├── ArcA_hits.tsv
+│   │   │   ├── DcuR_hits.tsv
+│   │   │   └── [...]
+│   │   ├── fimo_results/
+│   │   │   ├── arcA/
+│   │   │   │   ├── fimo.tsv
+│   │   │   │   └── [...]
+│   │   │   ├── dcuR/
+│   │   │   │   └── [...]
+│   │   │   └── [...]
+│   │   ├── meme_outputs/
+│   │   │   ├── arcA/
+│   │   │   │   ├── meme.html
+│   │   │   │   └── [...]
+│   │   │   └── [...]
+│   │   ├── motifs/
+│   │   │   ├── ArcA.txt
+│   │   │   ├── DcuR.txt
+│   │   │   └── [...]
+│   │   └── threshould_selection_result/
+│   │       └── final_validation_pvalue_0.0001.csv
+│   └── threshould_selection_data/
+│       ├── fimo_raw.tsv
+│       └── gold.csv
+├── figures/
+│   ├── pvalue_0.01/
+│   │   ├── jaccard_heatmap.png
+│   │   ├── overlap_heatmap.png
+│   │   └── [...]
+│   ├── qval_0.05/
+│   │   └── [...]
+│   └── Threshold_validation/
+│       └── [...]
 ├── scripts/
-│   ├── 01_data_preparation/    # Promoter extraction and training data
-│   ├── 03_results_compilation/ # FIMO results processing
-│   ├── 04_network_analysis/    # Regulon analysis and classification
-│   └── 05_visualization/       # Figure generation
-├── figures/                    # Generated visualizations
-├── requirements.txt
-└── README.md
+│   └── [...]
+├── README.md
+└── requirements.txt
+
 ```
 
 ## 🔬 Methodology
@@ -41,7 +115,7 @@ Salmonella-Anaerobic-Regulon-Analysis/
 ### 4. Network Analysis
 - **Regulon Characterization**: Computational identification of target genes  
 - **Connectivity Metrics**: Network analysis using similarity measures  
-- **Classification Algorithm**: Unsupervised learning for regulator categorization  
+- **Classification Algorithm**: percentile ranks of the Globalness Score 
 
 ### 5. Visualization
 - **Publication Figures**: Scripts for generating research visualizations  
@@ -75,15 +149,15 @@ adjustText>=0.8
 cd scripts/01_data_preparation
 python extract_promoters.py
 
+cd ../02_threshold_selection  
+python perfect_thershould.py
+
 cd ../03_results_compilation  
 ./compile_fimo_results.sh
 
-cd ../04_network_analysis
-python analyze_regulators.py
+cd ../04_analaysis_and_visualization
 python glob_loc.py
 
-cd ../05_visualization
-python visul.py
 ```
 
 ## 📁 Script Descriptions
@@ -92,16 +166,15 @@ python visul.py
 - `extract_promoters.py`: Extract promoter sequences from genome annotations  
 - `extract_training_sequences.sh`: Prepare training sets for motif discovery  
 
+### Threshold_Selection (`scripts/02_results_compilation/`)
+- `perfect_thershould.py`: Selcect optimimum threshold for further classification 
+
 ### Results Compilation (`scripts/03_results_compilation/`)
-- `compile_fimo_results.sh`: Process FIMO binding site predictions  
-- `regultor_sumry.py`: Compile and filter significant hits  
+- `compile_fimo_results.sh`: Process and Filter FIMO binding site predictions    
 
-### Network Analysis (`scripts/04_network_analysis/`)
-- `analyze_regulators.py`: Basic regulon characterization and matrix creation  
-- `glob_loc.py`: Advanced network analysis and classification algorithms  
+### Network Analysis and Visualization (`scripts/04_analaysis_and_visualization/`)
+- `glob_loc.py`: Advanced network analysis, classification algorithms and visualization 
 
-### Visualization (`scripts/05_visualization/`)
-- `visul.py`: Generate publication-quality figures and plots  
 
 ## 🔒 Data Availability
 - Processed results are available in the `data/results/` directory  
