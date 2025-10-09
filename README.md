@@ -9,87 +9,43 @@ This repository contains the computational workflow for analyzing anaerobic tran
 Salmonella-Anaerobic-Regulon-Analysis/
 ├── data/
 │   ├── processed/
-│   │   ├── AEZ45052.1_promoters.fasta
-│   │   ├── all_promoters.fasta
-│   │   ├── CDU88905.1_promoters.fasta
-│   │   ├── EBX3951613.1_promoters.fasta
-│   │   ├── EDA9785606.1_promoters.fasta
-│   │   ├── EGT0473696_promoters.fasta
-│   │   ├── ETA88628.1_promoters.fasta
+│   │   ├── *_promoters.fasta
 │   │   └── training_genes/
-│   │       ├── arcA_training_genes.txt
-│   │       ├── dcuR_training_genes.txt
-│   │       ├── fnr_training_genes.txt
-│   │       ├── narL_training_genes.txt
-│   │       ├── narP_training_genes.txt
-│   │       ├── nsrR_training_genes.txt
-│   │       └── ttrR_training_genes.txt
+│   │       └── *_training_genes.txt
 │   ├── raw/
 │   │   ├── all_genomes/
-│   │   │   ├── NC_003197.2/
-│   │   │   │   ├── EGT0473696_promoters.csv
-│   │   │   │   ├── EGT0473696_promoters.fasta
-│   │   │   │   ├── GCF_000006945.2_ASM694v2_genomic.fna
-│   │   │   │   └── genomic.gff
-│   │   │   ├── NC_016832.1/
-│   │   │   │   ├── AEZ45052.1_promoters.csv
-│   │   │   │   ├── AEZ45052.1_promoters.fasta
-│   │   │   │   └── ncbi_dataset-14/
-│   │   │   │       └── [...]
-│   │   │   └── [...]
+│   │   │   └── NC_*/ 
+│   │   │       └── *_promoters.fasta/.csv, genomic.fna, genomic.gff
 │   │   └── reference_genome/
-│   │       ├── GCF_000006945.2_ASM694v2_genomic.fna
-│   │       └── genomic.gff
+│   │       ├── *.fna
+│   │       └── *.gff
 │   ├── results/
 │   │   ├── classification_pvalue_1e-4/
-│   │   │   ├── jaccard_similarity_matrix.csv
-│   │   │   ├── overlap_count_matrix.csv
-│   │   │   └── regulator_classification_comprehensive.csv
+│   │   │   └── *.csv
 │   │   ├── classification_qvalue_0.05/
-│   │   │   ├── jaccard_similarity_matrix.csv
-│   │   │   ├── overlap_count_matrix.csv
-│   │   │   └── regulator_classification_comprehensive.csv
-│   │   ├── compiled_results_pvalue_1e-4/
-│   │   │   ├── ArcA_hits.tsv
-│   │   │   ├── DcuR_hits.tsv
-│   │   │   ├── Fnr_hits.tsv
-│   │   │   └── [...]
-│   │   ├── compiled_results_qvalue_0.05/
-│   │   │   ├── ArcA_hits.tsv
-│   │   │   ├── DcuR_hits.tsv
-│   │   │   └── [...]
+│   │   │   └── *.csv
+│   │   ├── compiled_results_*/ 
+│   │   │   └── *_hits.tsv
 │   │   ├── fimo_results/
-│   │   │   ├── arcA/
-│   │   │   │   ├── fimo.tsv
-│   │   │   │   └── [...]
-│   │   │   ├── dcuR/
-│   │   │   │   └── [...]
-│   │   │   └── [...]
+│   │   │   └── */fimo.tsv
 │   │   ├── meme_outputs/
-│   │   │   ├── arcA/
-│   │   │   │   ├── meme.html
-│   │   │   │   └── [...]
-│   │   │   └── [...]
+│   │   │   └── */meme.html
 │   │   ├── motifs/
-│   │   │   ├── ArcA.txt
-│   │   │   ├── DcuR.txt
-│   │   │   └── [...]
+│   │   │   └── *.txt
 │   │   └── threshould_selection_result/
-│   │       └── final_validation_pvalue_0.0001.csv
+│   │       └── final_validation_*.csv
 │   └── threshould_selection_data/
 │       ├── fimo_raw.tsv
 │       └── gold.csv
 ├── figures/
 │   ├── pvalue_0.01/
-│   │   ├── jaccard_heatmap.png
-│   │   ├── overlap_heatmap.png
-│   │   └── [...]
+│   │   └── *.png
 │   ├── qval_0.05/
-│   │   └── [...]
+│   │   └── *.png
 │   └── Threshold_validation/
-│       └── [...]
+│       └── *.png
 ├── scripts/
-│   └── [...]
+│   └── *.py
 ├── README.md
 └── requirements.txt
 
