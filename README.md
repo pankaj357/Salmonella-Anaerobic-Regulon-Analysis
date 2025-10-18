@@ -9,16 +9,46 @@ This repository contains the computational workflow for analyzing anaerobic tran
 Salmonella-Anaerobic-Regulon-Analysis/
 ├── data/
 │   ├── processed/
-│   │   └── training_genes/ # Training gene sets for motif discovery
-│   └── results/            # Analysis outputs (see .gitignore)
+│   │   ├── *_promoters.fasta
+│   │   └── training_genes/
+│   │       └── *_training_genes.txt
+│   ├── raw/
+│   │   ├── all_genomes/
+│   │   │   └── NC_*/ 
+│   │   │       └── *_promoters.fasta/.csv, genomic.fna, genomic.gff
+│   │   └── reference_genome/
+│   │       ├── *.fna
+│   │       └── *.gff
+│   ├── results/
+│   │   ├── classification_pvalue_1e-4/
+│   │   │   └── *.csv
+│   │   ├── classification_qvalue_0.05/
+│   │   │   └── *.csv
+│   │   ├── compiled_results_*/ 
+│   │   │   └── *_hits.tsv
+│   │   ├── fimo_results/
+│   │   │   └── */fimo.tsv
+│   │   ├── meme_outputs/
+│   │   │   └── */meme.html
+│   │   ├── motifs/
+│   │   │   └── *.txt
+│   │   └── threshould_selection_result/
+│   │       └── final_validation_*.csv
+│   └── threshould_selection_data/
+│       ├── fimo_raw.tsv
+│       └── gold.csv
+├── figures/
+│   ├── pvalue_0.01/
+│   │   └── *.png
+│   ├── qval_0.05/
+│   │   └── *.png
+│   └── Threshold_validation/
+│       └── *.png
 ├── scripts/
-│   ├── 01_data_preparation/    # Promoter extraction and training data
-│   ├── 03_results_compilation/ # FIMO results processing
-│   ├── 04_network_analysis/    # Regulon analysis and classification
-│   └── 05_visualization/       # Figure generation
-├── figures/                    # Generated visualizations
-├── requirements.txt
-└── README.md
+│   └── *.py
+├── README.md
+└── requirements.txt
+
 ```
 
 ## 🔬 Methodology
@@ -75,15 +105,14 @@ adjustText>=0.8
 cd scripts/01_data_preparation
 python extract_promoters.py
 
+cd ../02_threshold_selection
+python perfect_thershould.py
+
 cd ../03_results_compilation  
 ./compile_fimo_results.sh
 
-cd ../04_network_analysis
-python analyze_regulators.py
+cd ../04_analaysis_and_visualization
 python glob_loc.py
-
-cd ../05_visualization
-python visul.py
 ```
 
 ## 📁 Script Descriptions
@@ -92,16 +121,14 @@ python visul.py
 - `extract_promoters.py`: Extract promoter sequences from genome annotations  
 - `extract_training_sequences.sh`: Prepare training sets for motif discovery  
 
+### Threshold_Selection (`scripts/02_threshold_selection/`
+- `perfect_thershould.py`: Script to find optimized threshold
+
 ### Results Compilation (`scripts/03_results_compilation/`)
-- `compile_fimo_results.sh`: Process FIMO binding site predictions  
-- `regultor_sumry.py`: Compile and filter significant hits  
+- `compile_fimo_results.sh`: Process FIMO binding site predictions and filter significant hits 
 
-### Network Analysis (`scripts/04_network_analysis/`)
-- `analyze_regulators.py`: Basic regulon characterization and matrix creation  
-- `glob_loc.py`: Advanced network analysis and classification algorithms  
-
-### Visualization (`scripts/05_visualization/`)
-- `visul.py`: Generate publication-quality figures and plots  
+### Network Analysis and Visualization (`scripts/04_analaysis_and_visualization/`)
+ - `glob_loc.py`: Advanced network analysis and classification algorithms and plots generation
 
 ## 🔒 Data Availability
 - Processed results are available in the `data/results/` directory  
