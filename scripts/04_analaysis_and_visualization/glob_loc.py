@@ -1,4 +1,4 @@
-# analyze_regulators_enhanced.py
+# analyze_regulators_enhanced_ORTHOLOG.py
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -32,7 +32,7 @@ def load_data(file_path):
         
         print(f"✓ Successfully loaded binary matrix: {binary_matrix.shape}")
         print(f"✓ Regulators: {list(binary_matrix.columns)}")
-        print(f"✓ Number of genes: {len(binary_matrix)}")
+        print(f"✓ Number of ortholog groups: {len(binary_matrix)}")  # UPDATED
         
         return binary_matrix
         
@@ -54,7 +54,7 @@ def calculate_regulon_sizes(binary_matrix):
     }
     
     print("\n" + "="*50)
-    print("REGULON SIZE ANALYSIS")
+    print("ORTHOLOG-BASED REGULON SIZE ANALYSIS")  # UPDATED
     print("="*50)
     print(regulon_sizes.sort_values(ascending=False).to_string())
     print(f"\nStatistics: Mean={size_stats['mean']:.1f}, Std={size_stats['std']:.1f}, "
@@ -102,7 +102,7 @@ def calculate_network_connectivity(binary_matrix):
     betweenness = calculate_simple_betweenness(jaccard_df)
     
     print("\n" + "="*50)
-    print("NETWORK CONNECTIVITY ANALYSIS")
+    print("ORTHOLOG NETWORK CONNECTIVITY ANALYSIS")  # UPDATED
     print("="*50)
     print("Jaccard-based connectivity:")
     print(connectivity_centrality.sort_values(ascending=False).to_string())
@@ -110,19 +110,27 @@ def calculate_network_connectivity(binary_matrix):
     return jaccard_df, overlap_df, connectivity_centrality, betweenness
 
 def calculate_simple_betweenness(connectivity_df, threshold=0.01):
-    """Simple betweenness centrality approximation"""
+    """Simple betweenness centrality approximation for ortholog networks"""
     n = len(connectivity_df)
     betweenness = pd.Series(0.0, index=connectivity_df.index)
     
     binary_connections = connectivity_df > threshold
     
+    # Count how many paths go through each regulator (proper betweenness)
     for i in range(n):
         for j in range(n):
-            if i != j and binary_connections.iloc[i, j]:
-                betweenness.iloc[i] += 1
-                betweenness.iloc[j] += 1
+            if i != j:
+                # If i and j are connected, check if other regulators mediate their connection
+                for k in range(n):
+                    if k != i and k != j:
+                        if binary_connections.iloc[i, k] and binary_connections.iloc[k, j]:
+                            betweenness.iloc[k] += 1
     
-    return betweenness / betweenness.max() if betweenness.max() > 0 else betweenness
+    # Normalize to [0,1] range
+    if betweenness.max() > 0:
+        return betweenness / betweenness.max()
+    else:
+        return betweenness
 
 def classify_regulators(metrics_df):
     """Enhanced classification with multiple metrics"""
@@ -182,7 +190,7 @@ def create_scatter_plot(metrics_df, save_path=None):
     
     plt.xlabel('Normalized Regulon Size', fontsize=12, fontweight='bold')
     plt.ylabel('Normalized Network Connectivity', fontsize=12, fontweight='bold')
-    plt.title('Regulator Classification: Size vs Connectivity', fontsize=14, fontweight='bold')
+    plt.title('Ortholog-Based Regulator Classification: Size vs Connectivity', fontsize=14, fontweight='bold')  # UPDATED
     plt.legend()
     plt.grid(alpha=0.3)
     
@@ -191,22 +199,24 @@ def create_scatter_plot(metrics_df, save_path=None):
         print(f"✓ Saved scatter plot: {save_path}")
     plt.show()
 
-
 def create_bar_chart(metrics_df, save_path=None):
-    """Bar chart of Globalness Score"""
-    plt.figure(figsize=(8,6))
+    """Bar chart of Globalness Score with increased figure size and spacing"""
+    plt.figure(figsize=(10,8))
     color_map = {'Global': '#E74C3C', 'Intermediate': '#F39C12', 'Local': '#3498DB'}
     colors = [color_map[cls] for cls in metrics_df['Classification']]
     y_pos = np.arange(len(metrics_df))
     
-    plt.barh(y_pos, metrics_df['Globalness_Score'], color=colors, alpha=0.8)
-    plt.yticks(y_pos, metrics_df['Regulator'], fontweight='bold')
-    plt.xlabel('Globalness Score', fontsize=12, fontweight='bold')
-    plt.title('Regulator Globalness Ranking', fontsize=14, fontweight='bold')
+    plt.barh(y_pos, metrics_df['Globalness_Score'], color=colors, alpha=0.85, edgecolor='white', linewidth=1.2)
+    plt.yticks(y_pos, metrics_df['Regulator'], fontweight='bold', fontsize=12)
+    plt.xlabel('Globalness Score', fontsize=13, fontweight='bold')
+    plt.title('Ortholog-Based Globalness of Regulators', fontsize=15, fontweight='bold', pad=15)  # UPDATED
     plt.grid(axis='x', alpha=0.3)
     
     for i, v in enumerate(metrics_df['Globalness_Score']):
-        plt.text(v + 0.01, i, f'{v:.3f}', va='center', fontweight='bold')
+        plt.text(v + 0.015, i, f'{v:.3f}', va='center', fontweight='bold', fontsize=11)
+    plt.xlim(0.5, 1.05)
+
+    plt.tight_layout(pad=2)
     
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
@@ -215,7 +225,7 @@ def create_bar_chart(metrics_df, save_path=None):
 
 def create_regulon_size_barplot(metrics_df, save_path=None):
     """Publication-ready bar plot of regulon sizes colored by classification"""
-    plt.figure(figsize=(10,6))
+    plt.figure(figsize=(11,7))
     sns.set_style("whitegrid")
 
     # Sort by size
@@ -227,36 +237,35 @@ def create_regulon_size_barplot(metrics_df, save_path=None):
 
     ax = sns.barplot(x=sorted_df["Regulator"], 
                      y=sorted_df["Regulon_Size"],
-                     palette=bar_colors, alpha=0.9)
+                     palette=bar_colors, alpha=0.9, edgecolor='white', linewidth=1.2)
 
-    # Annotate values on bars
+    # Annotate values on bars with larger font
     for i, v in enumerate(sorted_df["Regulon_Size"]):
-        ax.text(i, v + max(sorted_df["Regulon_Size"])*0.01, str(v),
-                ha='center', va='bottom', fontweight='bold', fontsize=9)
+        ax.text(i, v + max(sorted_df["Regulon_Size"])*0.02, str(v),
+                ha='center', va='bottom', fontweight='bold', fontsize=11)
 
-    plt.xlabel("Regulator", fontsize=12, fontweight='bold')
-    plt.ylabel("Regulon Size (Number of Target Genes)", fontsize=12, fontweight='bold')
-    plt.title("Regulon Sizes of Transcriptional Regulators", fontsize=14, fontweight='bold')
-    plt.xticks(rotation=45, ha='right', fontsize=10, fontweight='bold')
-    plt.yticks(fontsize=10)
+    plt.xlabel("Regulator", fontsize=14, fontweight='bold', labelpad=10)
+    plt.ylabel("Regulon Size (Number of Ortholog Groups)", fontsize=14, fontweight='bold', labelpad=10)  # UPDATED
+    plt.title("Ortholog-Based Regulon Sizes of Transcriptional Regulators", fontsize=16, fontweight='bold', pad=15)  # UPDATED
+    plt.xticks(rotation=45, ha='right', fontsize=12, fontweight='bold')
+    plt.yticks(fontsize=12, fontweight='bold')
 
     # Add legend
     handles = [plt.Rectangle((0,0),1,1, color=color_map[cls]) for cls in color_map]
-    plt.legend(handles, color_map.keys(), title="Classification", fontsize=10)
+    plt.legend(handles, color_map.keys(), title="Classification", fontsize=11, title_fontsize=12)
 
-    plt.tight_layout()
+    plt.tight_layout(pad=2.0)
     
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"✓ Saved regulon size bar plot: {save_path}")
     plt.show()
 
-
 def create_jaccard_heatmap(jaccard_df, save_path=None):
     plt.figure(figsize=(8,6))
     sns.heatmap(jaccard_df, annot=True, fmt='.3f', cmap='RdBu_r', center=0,
                 square=True, cbar_kws={'label': 'Jaccard Similarity'})
-    plt.title('Regulator Co-regulation Network (Jaccard Similarity)', fontweight='bold')
+    plt.title('Ortholog-Based Regulator Co-regulation Network', fontweight='bold')  # UPDATED
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"✓ Saved Jaccard heatmap: {save_path}")
@@ -265,8 +274,8 @@ def create_jaccard_heatmap(jaccard_df, save_path=None):
 def create_overlap_heatmap(overlap_df, save_path=None):
     plt.figure(figsize=(8,6))
     sns.heatmap(overlap_df, annot=True, fmt='.0f', cmap='YlOrRd', square=True,
-                cbar_kws={'label': 'Shared Target Count'})
-    plt.title('Regulator Target Overlap (Shared Gene Count)', fontweight='bold')
+                cbar_kws={'label': 'Shared Ortholog Count'})  # UPDATED
+    plt.title('Regulator Target Overlap (Shared Ortholog Count)', fontweight='bold')  # UPDATED
     if save_path:
         plt.savefig(save_path, dpi=300, bbox_inches='tight')
         print(f"✓ Saved overlap heatmap: {save_path}")
@@ -274,11 +283,11 @@ def create_overlap_heatmap(overlap_df, save_path=None):
 
 def create_statistical_summary(metrics_df, regulon_sizes, connectivity_centrality):
     print("\n" + "="*50)
-    print("STATISTICAL SUMMARY")
+    print("ORTHOLOG-BASED STATISTICAL SUMMARY")  # UPDATED
     print("="*50)
     
     corr_coef, p_value = pearsonr(regulon_sizes, connectivity_centrality)
-    print(f"Correlation between regulon size and connectivity: {corr_coef:.3f} (p={p_value:.3f})")
+    print(f"Correlation between ortholog-based regulon size and connectivity: {corr_coef:.3f} (p={p_value:.3f})")  # UPDATED
     
     class_summary = metrics_df['Classification'].value_counts()
     print(f"\nClassification distribution:")
@@ -296,10 +305,10 @@ def create_statistical_summary(metrics_df, regulon_sizes, connectivity_centralit
 # 4. Main execution
 # ----------------------------------------------------------------------------
 def main():
-    print("🧬 ENHANCED REGULATOR CLASSIFICATION ANALYSIS")
+    print("🧬 ORTHOLOG-BASED REGULATOR CLASSIFICATION ANALYSIS")  # UPDATED
     print("="*60)
     
-    binary_matrix = load_data('/Users/admin/Desktop/Salmonella-Anaerobic-Regulon-Analysis/data/results/compiled_results_pvalue_1e-4/regulatory_binary_matrix_p1e-4.csv')
+    binary_matrix = load_data('/Users/admin/Desktop/Salmonella-Anaerobic-Regulon-Analysis/compiled_results_orthologs/regulatory_binary_matrix_ORTHOLOGS_p1e-4.csv')
     if binary_matrix is None:
         return
     
@@ -309,17 +318,17 @@ def main():
     jaccard_df, overlap_df, connectivity_centrality, betweenness = calculate_network_connectivity(binary_matrix)
     
     metrics_df = pd.DataFrame({
-        'Regulator': binary_matrix.columns.tolist(),
-        'Regulon_Size': regulon_sizes.values,
-        'Network_Connectivity': connectivity_centrality.values,
-        'Betweenness_Centrality': betweenness.values
+    'Regulator': regulon_sizes.index.tolist(),  # Use the SAME order as regulon_sizes
+    'Regulon_Size': regulon_sizes.values,
+    'Network_Connectivity': connectivity_centrality.values,
+    'Betweenness_Centrality': betweenness.values
     })
     
     metrics_df = classify_regulators(metrics_df)
     metrics_df = metrics_df.sort_values('Globalness_Score', ascending=False).reset_index(drop=True)
     
     print("\n" + "="*50)
-    print("FINAL CLASSIFICATION RESULTS")
+    print("ORTHOLOG-BASED CLASSIFICATION RESULTS")  # UPDATED
     print("="*50)
     display_columns = ['Regulator', 'Regulon_Size', 'Network_Connectivity', 
                       'Globalness_Score', 'Percentile_Rank', 'Classification']
@@ -330,7 +339,7 @@ def main():
     # ------------------------------
     create_scatter_plot(metrics_df, 'enhanced_results/regulator_scatter.png')
     create_bar_chart(metrics_df, 'enhanced_results/regulator_bar.png')
-    create_regulon_size_barplot(metrics_df, 'enhanced_results/regulon_size_barplot.png')  # NEW PLOT
+    create_regulon_size_barplot(metrics_df, 'enhanced_results/regulon_size_barplot.png')
     create_jaccard_heatmap(jaccard_df, 'enhanced_results/jaccard_heatmap.png')
     create_overlap_heatmap(overlap_df, 'enhanced_results/overlap_heatmap.png')
     
@@ -346,7 +355,7 @@ def main():
     jaccard_df.to_csv(output_files['jaccard_matrix'])
     overlap_df.to_csv(output_files['overlap_matrix'])
     
-    print(f"\n✓ Analysis complete! Files saved:")
+    print(f"\n✓ Ortholog-based analysis complete! Files saved:")  # UPDATED
     for desc, path in output_files.items():
         print(f"  - {desc}: {path}")
 
